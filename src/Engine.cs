@@ -37,6 +37,14 @@ public class Grid
         }
     }
 
+    public Players? this[GridPosition position]
+    {
+        get
+        {
+            return _game[position];
+        }
+    }
+
     public IEnumerable<GridPosition> EmptyCells => _game.Where(c => c.Value == null).Select(x => x.Key);
 
     private IEnumerable<Players?[]> Rows
@@ -112,7 +120,7 @@ public class TicTacToe
         NewGame();
     }
 
-    private void NewGame()
+    public void NewGame()
     {
         LoadHistory(Array.Empty<GridPosition>());
     }
