@@ -2,15 +2,13 @@ namespace TicTacToe.Engine;
 
 using History = IEnumerable<GridPosition>;
 
-public enum Player
-{
-    X,
-    O
-}
+public enum Players { X, O }
 
 public static class Ext
 {
-    public static Player Switch(this Player currentPlayer) => currentPlayer == Player.X ? Player.O : Player.X;
+    public static Grid GetGrid(this History history) => new(history);
+
+    public static Players Switch(this Players currentPlayer) => currentPlayer == Players.X ? Players.O : Players.X;
 }
 
 public enum GridPosition
@@ -27,11 +25,11 @@ public enum GridPosition
 }
 public class Grid
 {
-    private Dictionary<GridPosition, Player?> _game = Enum.GetValues<GridPosition>().ToDictionary(x => x, x => (Player?)null);
+    private Dictionary<GridPosition, Players?> _game = Enum.GetValues<GridPosition>().ToDictionary(x => x, x => (Players?)null);
 
     public Grid(History history)
     {
-        var currentPlay = Player.X;
+        var currentPlay = Players.X;
         foreach (var p in history)
         {
             _game[p] = currentPlay;
@@ -41,7 +39,7 @@ public class Grid
 
     public IEnumerable<GridPosition> EmptyCells => _game.Where(c => c.Value == null).Select(x => x.Key);
 
-    private IEnumerable<Player?[]> Rows
+    private IEnumerable<Players?[]> Rows
     {
         get
         {
@@ -50,7 +48,7 @@ public class Grid
             yield return new[] { _game[GridPosition.BottomLeft], _game[GridPosition.BottomCenter], _game[GridPosition.BottomRight] };
         }
     }
-    private IEnumerable<Player?[]> Columns
+    private IEnumerable<Players?[]> Columns
     {
         get
         {
@@ -59,7 +57,7 @@ public class Grid
             yield return new[] { _game[GridPosition.TopRight], _game[GridPosition.CenterRight], _game[GridPosition.BottomRight] };
         }
     }
-    private IEnumerable<Player?[]> Diagonals
+    private IEnumerable<Players?[]> Diagonals
     {
         get
         {
@@ -68,7 +66,7 @@ public class Grid
         }
     }
 
-    public Player? HasWinner()
+    public Players? HasWinner()
     {
         var all = Rows.Concat(Columns).Concat(Diagonals);
         foreach (var x in all)
@@ -82,7 +80,7 @@ public class Grid
 
 public abstract record GameState
 {
-    public sealed record InProgress(History History, Player CurrentPlayer) : GameState();
+    public sealed record InProgress(History History, Players CurrentPlayer) : GameState();
     public sealed record Finished(History History, GameOutcome Outcome) : GameState();
 
     public T Switch<T>(Func<InProgress, T> inProgress, Func<Finished, T> finished)
@@ -93,20 +91,22 @@ public abstract record GameState
             GameState.InProgress i => inProgress(i),
             _ => throw new NotImplementedException()
         };
-
-    }
-    public abstract record GameOutcome
-    {
-        public sealed record Won(Player By) : GameOutcome();
-        public sealed record Tie() : GameOutcome();
     }
 }
+
+public abstract record GameOutcome
+{
+    public sealed record Won(Players By) : GameOutcome();
+    public sealed record Tie() : GameOutcome();
+}
+
+public enum MoveError { AlreadyFinished, PositionAlreadyUsed }
 
 public class TicTacToe
 {
     public GameState State { get; private set; } = default!;
     public enum MoveError { AlreadyFinished, PositionAlreadyUsed }
-    
+
     public TicTacToe()
     {
         NewGame();
@@ -120,6 +120,17 @@ public class TicTacToe
     private void LoadHistory(History gridPositions)
     {
         var grid = new Grid(gridPositions);
+
+        var winner = grid.HasWinner();
+        var emptyCells = grid.EmptyCells.Any();
+        var nextPlayer = gridPositions.Count() % 2 == 0 ? Players.X : Players.O;
+
+        State = (winner, emptyCells) switch
+        {
+            (null, true) => new GameState.InProgress(gridPositions, nextPlayer),
+            (null, false) => new GameState.Finished(gridPositions, new GameOutcome.Tie()),
+            _ => new GameState.Finished(gridPositions, new GameOutcome.Won(winner.Value))
+        };
     }
 
     public MoveError? IsValidMove(GridPosition position) => State.Switch(

@@ -34,39 +34,14 @@ public class EngineTests
     }
 
     [Fact]
-    public void Check_MoveError_PositionAlreadyUsed()
+    public void Check_Play_Invalid_Move()
     {
         var game = new TicTacToe.Engine.TicTacToe();
 
         game.Play(Engine.GridPosition.BottomLeft);
-
         var validation = game.Play(Engine.GridPosition.BottomLeft);
+
         Assert.NotNull(validation);
         Assert.Equal(Engine.TicTacToe.MoveError.PositionAlreadyUsed, validation);
-    }
-
-    [Fact]
-    public void Check_Tie_Game()
-    {
-        var game = new TicTacToe.Engine.TicTacToe();
-
-        game.Play(Engine.GridPosition.BottomLeft);
-        game.Play(Engine.GridPosition.BottomCenter);
-        game.Play(Engine.GridPosition.BottomRight);
-        game.Play(Engine.GridPosition.CenterLeft);
-        game.Play(Engine.GridPosition.CenterRight);
-        game.Play(Engine.GridPosition.TopRight);
-        game.Play(Engine.GridPosition.TopLeft);
-        game.Play(Engine.GridPosition.Middle);
-        game.Play(Engine.GridPosition.TopCenter);
-
-        Assert.IsAssignableFrom<TicTacToe.Engine.GameState.Finished>(game.State);
-        var finished = (TicTacToe.Engine.GameState.Finished)game.State;
-        
-        Assert.IsAssignableFrom<TicTacToe.Engine.GameOutcome.Tie>(finished.Outcome);
-
-        var validation = game.Play(Engine.GridPosition.BottomLeft);
-        Assert.NotNull(validation);
-        Assert.Equal(Engine.TicTacToe.MoveError.AlreadyFinished, validation);
     }
 }

@@ -1,0 +1,164 @@
+SF:D:\git\TicTacToe\src\Program.cs
+FN:2,System.Void Program::<Main>$(System.String[])
+FNDA:0,System.Void Program::<Main>$(System.String[])
+DA:3,0
+DA:5,0
+DA:6,0
+DA:7,0
+BRDA:5,24,0,0
+BRDA:5,24,1,0
+LF:4
+LH:0
+BRF:2
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:D:\git\TicTacToe\src\Engine.cs
+FN:8,TicTacToe.Engine.Grid TicTacToe.Engine.Ext::GetGrid(System.Collections.Generic.IEnumerable`1<TicTacToe.Engine.GridPosition>)
+FNDA:0,TicTacToe.Engine.Grid TicTacToe.Engine.Ext::GetGrid(System.Collections.Generic.IEnumerable`1<TicTacToe.Engine.GridPosition>)
+DA:9,0
+FN:10,TicTacToe.Engine.Players TicTacToe.Engine.Ext::Switch(TicTacToe.Engine.Players)
+FNDA:61,TicTacToe.Engine.Players TicTacToe.Engine.Ext::Switch(TicTacToe.Engine.Players)
+DA:11,61
+BRDA:11,1,0,26
+BRDA:11,1,1,35
+FN:39,System.Collections.Generic.IEnumerable`1<TicTacToe.Engine.GridPosition> TicTacToe.Engine.Grid::get_EmptyCells()
+FNDA:103,System.Collections.Generic.IEnumerable`1<TicTacToe.Engine.GridPosition> TicTacToe.Engine.Grid::get_EmptyCells()
+DA:40,103
+FN:69,System.Nullable`1<TicTacToe.Engine.Players> TicTacToe.Engine.Grid::HasWinner()
+FNDA:19,System.Nullable`1<TicTacToe.Engine.Players> TicTacToe.Engine.Grid::HasWinner()
+DA:70,19
+DA:71,19
+DA:72,160
+DA:73,59
+DA:74,59
+DA:75,15
+DA:76,44
+DA:77,4
+DA:78,19
+BRDA:72,83,1,59
+BRDA:74,64,0,15
+BRDA:74,64,1,44
+BRDA:72,83,0,4
+FN:27,System.Void TicTacToe.Engine.Grid::.ctor(System.Collections.Generic.IEnumerable`1<TicTacToe.Engine.GridPosition>)
+FNDA:361,System.Void TicTacToe.Engine.Grid::.ctor(System.Collections.Generic.IEnumerable`1<TicTacToe.Engine.GridPosition>)
+DA:28,361
+DA:30,19
+DA:31,19
+DA:32,19
+DA:33,179
+DA:34,61
+DA:35,61
+DA:36,61
+DA:37,61
+DA:38,19
+BRDA:33,139,1,61
+BRDA:33,139,0,19
+FN:53,System.Boolean TicTacToe.Engine.Grid/<get_Columns>d__7::MoveNext()
+FNDA:6,System.Boolean TicTacToe.Engine.Grid/<get_Columns>d__7::MoveNext()
+DA:54,6
+DA:55,6
+DA:56,6
+DA:57,6
+DA:58,5
+FN:62,System.Boolean TicTacToe.Engine.Grid/<get_Diagonals>d__9::MoveNext()
+FNDA:5,System.Boolean TicTacToe.Engine.Grid/<get_Diagonals>d__9::MoveNext()
+DA:63,5
+DA:64,5
+DA:65,5
+DA:66,4
+FN:44,System.Boolean TicTacToe.Engine.Grid/<get_Rows>d__5::MoveNext()
+FNDA:19,System.Boolean TicTacToe.Engine.Grid/<get_Rows>d__5::MoveNext()
+DA:45,19
+DA:46,19
+DA:47,6
+DA:48,6
+DA:49,6
+FN:86,T TicTacToe.Engine.GameState::Switch(System.Func`2<TicTacToe.Engine.GameState/InProgress,T>,System.Func`2<TicTacToe.Engine.GameState/Finished,T>)
+FNDA:17,T TicTacToe.Engine.GameState::Switch(System.Func`2<TicTacToe.Engine.GameState/InProgress,T>,System.Func`2<TicTacToe.Engine.GameState/Finished,T>)
+DA:87,17
+DA:88,17
+DA:89,17
+DA:90,1
+DA:91,16
+DA:92,0
+DA:93,17
+DA:94,17
+BRDA:88,15,0,16
+BRDA:88,15,1,1
+BRDA:88,25,1,16
+BRDA:88,25,0,0
+FN:82,System.Collections.Generic.IEnumerable`1<TicTacToe.Engine.GridPosition> TicTacToe.Engine.GameState/InProgress::get_History()
+FNDA:84,System.Collections.Generic.IEnumerable`1<TicTacToe.Engine.GridPosition> TicTacToe.Engine.GameState/InProgress::get_History()
+DA:83,84
+FN:83,System.Collections.Generic.IEnumerable`1<TicTacToe.Engine.GridPosition> TicTacToe.Engine.GameState/Finished::get_History()
+FNDA:10,System.Collections.Generic.IEnumerable`1<TicTacToe.Engine.GridPosition> TicTacToe.Engine.GameState/Finished::get_History()
+DA:84,10
+FN:98,TicTacToe.Engine.Players TicTacToe.Engine.GameOutcome/Won::get_By()
+FNDA:3,TicTacToe.Engine.Players TicTacToe.Engine.GameOutcome/Won::get_By()
+DA:99,3
+FN:99,System.Void TicTacToe.Engine.GameOutcome/Tie::.ctor()
+FNDA:1,System.Void TicTacToe.Engine.GameOutcome/Tie::.ctor()
+DA:100,1
+FN:106,TicTacToe.Engine.GameState TicTacToe.Engine.TicTacToe::get_State()
+FNDA:61,TicTacToe.Engine.GameState TicTacToe.Engine.TicTacToe::get_State()
+DA:107,61
+FN:115,System.Void TicTacToe.Engine.TicTacToe::NewGame()
+FNDA:4,System.Void TicTacToe.Engine.TicTacToe::NewGame()
+DA:116,4
+DA:117,4
+DA:118,4
+FN:120,System.Void TicTacToe.Engine.TicTacToe::LoadHistory(System.Collections.Generic.IEnumerable`1<TicTacToe.Engine.GridPosition>)
+FNDA:19,System.Void TicTacToe.Engine.TicTacToe::LoadHistory(System.Collections.Generic.IEnumerable`1<TicTacToe.Engine.GridPosition>)
+DA:121,19
+DA:122,19
+DA:124,19
+DA:125,19
+DA:126,19
+DA:128,19
+DA:129,19
+DA:130,17
+DA:131,1
+DA:132,1
+DA:133,19
+DA:134,19
+BRDA:126,35,0,9
+BRDA:126,35,1,10
+BRDA:128,53,0,18
+BRDA:128,56,1,17
+BRDA:128,56,0,1
+BRDA:128,53,1,1
+FN:135,System.Nullable`1<TicTacToe.Engine.TicTacToe/MoveError> TicTacToe.Engine.TicTacToe::IsValidMove(TicTacToe.Engine.GridPosition)
+FNDA:17,System.Nullable`1<TicTacToe.Engine.TicTacToe/MoveError> TicTacToe.Engine.TicTacToe::IsValidMove(TicTacToe.Engine.GridPosition)
+DA:136,17
+DA:137,16
+DA:138,1
+DA:139,17
+BRDA:137,17,0,15
+BRDA:137,17,1,1
+FN:141,System.Nullable`1<TicTacToe.Engine.TicTacToe/MoveError> TicTacToe.Engine.TicTacToe::Play(TicTacToe.Engine.GridPosition)
+FNDA:17,System.Nullable`1<TicTacToe.Engine.TicTacToe/MoveError> TicTacToe.Engine.TicTacToe::Play(TicTacToe.Engine.GridPosition)
+DA:142,17
+DA:143,17
+DA:144,17
+DA:145,2
+DA:147,15
+DA:149,15
+DA:151,15
+DA:152,17
+BRDA:144,18,0,2
+BRDA:144,18,1,15
+FN:109,System.Void TicTacToe.Engine.TicTacToe::.ctor()
+FNDA:4,System.Void TicTacToe.Engine.TicTacToe::.ctor()
+DA:110,4
+DA:111,4
+DA:112,4
+DA:113,4
+LF:80
+LH:78
+BRF:22
+BRH:21
+FNF:19
+FNH:18
+end_of_record
