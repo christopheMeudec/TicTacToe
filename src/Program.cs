@@ -1,8 +1,13 @@
 ﻿using Spectre.Console;
+using TicTacToe.Agents;
 using TicTacToe.Engine;
 
 public class Program
 {
+
+    private static readonly IAgent agentX = new Human();
+    private static readonly IAgent agentY = new RandomAI();
+
     public static void Main()
     {
         var game = new TicTacToe.Engine.TicTacToe();
@@ -13,7 +18,9 @@ public class Program
     {
         while (game.State is GameState.InProgress inProgress)
         {
-            var move = RenderInProgress(inProgress);
+             RenderInProgress(inProgress);
+             var currentAgent = inProgress.CurrentPlayer == Players.X ? agentX : agentY;
+            var move = currentAgent.Play(inProgress);
             game.Play(move);
         }
 
@@ -55,26 +62,13 @@ public class Program
         return newGame.Equals("Yes");
     }
 
-    private static GridPosition RenderInProgress(GameState.InProgress inProgress)
+    private static void RenderInProgress(GameState.InProgress inProgress)
     {
         var grid = inProgress.History.GetGrid();
 
         AnsiConsole.Clear();
         RenderCurrentPlayer(inProgress.CurrentPlayer);
         RenderGrid(grid);
-        var move = PromptAvailableMove(grid);
-
-        return move;
-    }
-
-    private static GridPosition PromptAvailableMove(TicTacToe.Engine.Grid grid)
-    {
-        var selectedMove = AnsiConsole.Prompt(new SelectionPrompt<string>()
-           .Title("Choose a [green]position[/]:")
-           .PageSize(9)
-           .AddChoices(grid.EmptyCells.Select(x => x.ToString())));
-
-        return Enum.Parse<GridPosition>(selectedMove);
     }
 
     private static void RenderGrid(TicTacToe.Engine.Grid grid)

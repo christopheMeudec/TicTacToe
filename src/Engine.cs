@@ -23,6 +23,7 @@ public enum GridPosition
     BottomCenter = 2,
     BottomRight = 3,
 }
+
 public class Grid
 {
     private Dictionary<GridPosition, Players?> _game = Enum.GetValues<GridPosition>().ToDictionary(x => x, x => (Players?)null);
